@@ -4,28 +4,52 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+
+@Entity
+@Table(name = "tb_agendamento")
 public class Agendamento implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date date;
 
-	private Servico servico;
+	@OneToOne
+	@JoinColumn(name="cliente")
 	private Cliente cliente;
-	private Profissional profissional;
+
+	@OneToOne
+	@JoinColumn(name="servico")
+	private Servico servico;
+	
+	@OneToOne
+	@JoinColumn(name="profissional")
+	private Profissional profissional;	
 	
 	public Agendamento() {
 		
 	}
 
-	public Agendamento(Integer id, Date date, Servico servico, Cliente cliente,
+	public Agendamento(Integer id, Date date, Cliente cliente, Servico servico,
 			Profissional profissional) {
 		super();
 		this.id = id;
 		this.date = date;
-		this.servico = servico;
 		this.cliente = cliente;
+		this.servico = servico;
+	
 		this.profissional = profissional;
 	}
 

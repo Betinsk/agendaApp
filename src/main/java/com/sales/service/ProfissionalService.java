@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sales.DTO.ProfissionalDTO;
-import com.sales.domain.Cliente;
 import com.sales.domain.Endereco;
 import com.sales.domain.Estabelecimento;
 import com.sales.domain.Profissional;
@@ -44,8 +43,9 @@ public class ProfissionalService {
 	
 	//Method for insert
 	public Profissional insert(Profissional obj) {
-		obj.setId(null);
-		 profissionalRepository.save(obj);
+		//obj.setId(null);
+		 profissionalRepository.save(obj); 
+
 		return obj;
 	}
 
@@ -58,7 +58,11 @@ public class ProfissionalService {
 	/*
 	 * Erro metodo de inserir, não entendi o porque ainda.
 	 * profissionalRepository.save(pro);
+	 * Agora entendi, o metodo insert estava salvando o objeto profissional uma segunda vez, fazendo com que o id do objeto profissional ficasse
+	 * diferente dos ids dos outros objetos, endereco e estabelecimento
 	 */
+	// profissionalRepository.save(pro);<-- aqui estava o erro, salvando uma segunda vez
+
 	return pro;
 	
 	}
