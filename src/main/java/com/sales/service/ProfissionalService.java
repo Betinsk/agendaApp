@@ -41,11 +41,11 @@ public class ProfissionalService {
 		 "Objeto não encontrado! Id: " + id + ", Tipo: " + Profissional.class.getName(), null)); 
 		}
 	
-	//Method for insert
+	//Method for insert // 
+	// Profissional sem estabelecimento
 	public Profissional insert(Profissional obj) {
 		//obj.setId(null);
 		 profissionalRepository.save(obj); 
-
 		return obj;
 	}
 

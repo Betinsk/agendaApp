@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.sales.DTO.ClienteNewDTO;
 import com.sales.DTO.ProfissionalDTO;
-import com.sales.domain.Cliente;
 import com.sales.domain.Profissional;
-import com.sales.service.ClienteService;
 import com.sales.service.ProfissionalService;
 
 @RestController
@@ -43,6 +40,16 @@ public class ProfissionalResource {
 
 		
 		//Method post 
+		@RequestMapping(value="/profissional", method=RequestMethod.POST)
+		public ResponseEntity<Void> insert(@RequestBody Profissional obj) {
+		obj = profissionalService.insert(obj);
+	
+			URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+			.path("/{id}").buildAndExpand(obj.getId()).toUri();
+			return ResponseEntity.created(uri).build();
+		}
+		
+		//Method post dto
 				@RequestMapping(method=RequestMethod.POST)
 				public ResponseEntity<Void> insert(@RequestBody ProfissionalDTO objDto) {
 				Profissional obj = profissionalService.fromDTO(objDto);

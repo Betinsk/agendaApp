@@ -1,18 +1,10 @@
 package com.sales;
 
-import java.text.SimpleDateFormat;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.sales.domain.Agendamento;
-import com.sales.domain.Cliente;
-import com.sales.domain.Endereco;
-import com.sales.domain.Estabelecimento;
-import com.sales.domain.Profissional;
-import com.sales.domain.Servico;
 import com.sales.repositories.AgendamentoRepository;
 import com.sales.repositories.ClienteRepository;
 import com.sales.repositories.EnderecoRepository;
