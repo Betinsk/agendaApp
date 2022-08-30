@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.sales.DTO.EstabelecimentoDTO;
 import com.sales.domain.Estabelecimento;
 import com.sales.service.EstabelecimentoService;
 
 @RestController
-@RequestMapping(value = "/Estabelecimentos")
+@RequestMapping(value = "/estabelecimentos")
 public class EstabelecimentoResource {
 
 	@Autowired	
@@ -37,9 +38,12 @@ public class EstabelecimentoResource {
 
 	// Method post
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Estabelecimento obj) {
+	public ResponseEntity<Void> insert(@RequestBody EstabelecimentoDTO objDto) {
+		Estabelecimento obj = EstabelecimentoService.fromDTO(objDto);
 		obj = EstabelecimentoService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
+	
+
 }
